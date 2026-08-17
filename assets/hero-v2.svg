@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="0.5" stop-color="#eaf6ff"/>
+      <stop offset="1" stop-color="#f6fbff"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1597e7"/><stop offset="1" stop-color="#0062ba"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff58b"/><stop offset="0.55" stop-color="#ffd43f"/><stop offset="1" stop-color="#f5b700"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="13" flood-color="#295c8f" flood-opacity=".18"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="1200" height="690" fill="url(#bg)"/>
+  <circle cx="1030" cy="120" r="155" fill="#fff" opacity=".55"/>
+  <circle cx="110" cy="620" r="170" fill="#fff" opacity=".7"/>
+  <g opacity=".28" fill="#7eb7dd">
+    <rect x="40" y="240" width="105" height="260" rx="5"/><rect x="160" y="180" width="90" height="320" rx="5"/><rect x="265" y="280" width="110" height="220" rx="5"/><rect x="390" y="220" width="78" height="280" rx="5"/><rect x="484" y="310" width="120" height="190" rx="5"/>
+  </g>
+  <g opacity=".28" fill="#fff"><rect x="58" y="268" width="14" height="18"/><rect x="88" y="268" width="14" height="18"/><rect x="58" y="303" width="14" height="18"/><rect x="88" y="303" width="14" height="18"/><rect x="180" y="210" width="14" height="18"/><rect x="210" y="210" width="14" height="18"/></g>
+  <path d="M70 72 C235 7 500 10 676 76 C715 90 715 147 675 162 C492 232 206 226 72 160 C32 141 35 87 70 72Z" fill="url(#gold)" stroke="#fff" stroke-width="9"/>
+  <path d="M87 87 C250 38 486 33 648 88" fill="none" stroke="#fff7bc" stroke-width="6" opacity=".95"/>
+  <g fill="#0a5ea8">
+    <text x="120" y="111" font-family="sans-serif" font-size="29" font-weight="900">大阪で仕事も住まいもまとめて相談！</text>
+    <text x="118" y="157" font-family="sans-serif" font-size="51" font-weight="900">寮 求人 大阪</text>
+  </g>
+  <g fill="#fff" stroke="#e6bc24" stroke-width="5">
+    <circle cx="165" cy="525" r="95"/><circle cx="370" cy="525" r="95"/><circle cx="575" cy="525" r="95"/><circle cx="780" cy="525" r="95"/>
+  </g>
+  <g font-family="sans-serif" text-anchor="middle" font-weight="900" fill="#064e96">
+    <text x="165" y="492" font-size="20">大阪エリア</text><text x="165" y="528" font-size="30">寮付き求人</text><text x="165" y="558" font-size="17" fill="#333">条件からご案内</text>
+    <text x="370" y="492" font-size="20">急ぎの方</text><text x="370" y="528" font-size="30">入寮相談</text><text x="370" y="558" font-size="17" fill="#333">最短日程を確認</text>
+    <text x="575" y="492" font-size="20">経験不問</text><text x="575" y="528" font-size="30">未経験OK</text><text x="575" y="558" font-size="17" fill="#333">案件多数</text>
+    <text x="780" y="492" font-size="20">応募前から</text><text x="780" y="528" font-size="30">生活相談</text><text x="780" y="558" font-size="17" fill="#333">LINEで無料</text>
+  </g>
+  <g transform="translate(780 80)">
+    <ellipse cx="210" cy="500" rx="155" ry="26" fill="#6f91a7" opacity=".15" filter="url(#soft)"/>
+    <circle cx="225" cy="123" r="78" fill="#f2c3a1"/>
+    <path d="M154 116c5-83 116-111 154-38 15 28 13 60 3 91-13-38-52-63-91-62-25 0-48 8-66 25Z" fill="#2d3443"/>
+    <path d="M177 103c20-28 46-46 83-48" stroke="#2d3443" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="198" cy="126" r="5" fill="#252c37"/><circle cx="247" cy="126" r="5" fill="#252c37"/>
+    <path d="M204 153c14 11 28 11 42 0" fill="none" stroke="#b86c63" stroke-width="5" stroke-linecap="round"/>
+    <rect x="126" y="193" width="194" height="260" rx="66" fill="url(#blue)"/>
+    <path d="M175 208h95" stroke="#fff" stroke-width="18" opacity=".95"/>
+    <rect x="245" y="245" width="48" height="38" rx="5" fill="#e8f6ff" opacity=".85"/>
+    <path d="M137 250c-52 35-71 87-78 145" stroke="#0c74c9" stroke-width="52" stroke-linecap="round"/>
+    <path d="M311 243c30 17 58 37 81 67" stroke="#0b6dbf" stroke-width="50" stroke-linecap="round"/>
+    <path d="M70 391c-17 15-18 45-1 59 20 16 45 8 54-12" fill="#f2c3a1"/>
+    <path d="M389 307c30-65 50-127 59-186" stroke="#f2c3a1" stroke-width="31" stroke-linecap="round"/>
+    <circle cx="455" cy="97" r="28" fill="#f2c3a1"/>
+    <path d="M453 72l6-37M439 78l-16-32M469 78l20-31" stroke="#f2c3a1" stroke-width="15" stroke-linecap="round"/>
+    <path d="M167 448h65l-17 151h-91Z" fill="#27384b"/><path d="M238 448h65l41 151h-91Z" fill="#27384b"/>
+    <path d="M116 599h108" stroke="#1d2631" stroke-width="26" stroke-linecap="round"/><path d="M247 599h115" stroke="#1d2631" stroke-width="26" stroke-linecap="round"/>
+  </g>
+  <g fill="#ffd43f"><circle cx="75" cy="45" r="7"/><circle cx="700" cy="50" r="7"/><circle cx="730" cy="180" r="5"/><path d="M720 30v35M703 48h35M690 205v34M673 222h34" stroke="#ffd43f" stroke-width="6" stroke-linecap="round"/></g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">
+  <rect width="640" height="420" fill="#fff"/>
+  <g fill="none" stroke="#202020" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="220" cy="122" r="55"/><path d="M170 106c13-49 91-66 113-11"/><path d="M178 184c-55 31-79 92-77 169M266 180c51 27 79 86 85 166"/><path d="M137 259c45 25 91 26 135 2"/>
+    <circle cx="425" cy="120" r="55"/><path d="M374 105c21-50 98-58 110-5"/><path d="M378 182c-53 30-75 89-77 169M470 180c55 31 79 89 79 170"/><path d="M348 262c50 27 99 28 145 0"/>
+  </g>
+  <g fill="#ffd43f"><path d="M168 87c12-44 73-66 111-30l-6 37c-29-22-67-23-105-7Z"/><path d="M374 84c18-44 83-56 111-18l-10 35c-32-22-65-26-101-17Z"/><path d="M135 205c45-30 98-31 143 2l-13 83c-42 15-84 14-126-4Z"/></g>
+  <g fill="#202020"><circle cx="204" cy="124" r="6"/><circle cx="238" cy="124" r="6"/><circle cx="409" cy="122" r="6"/><circle cx="443" cy="122" r="6"/></g>
+  <g fill="none" stroke="#202020" stroke-width="6" stroke-linecap="round"><path d="M205 155c11-10 23-10 34 0"/><path d="M410 155c11-10 23-10 34 0"/><path d="M288 60l20-32M314 73l36-15M305 105l37 7"/></g>
+</svg>

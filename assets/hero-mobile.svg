@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 980">
+  <defs>
+    <linearGradient id="bgm" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3fbff"/><stop offset="1" stop-color="#e7f5ff"/></linearGradient>
+    <linearGradient id="goldm" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff58b"/><stop offset=".65" stop-color="#ffd43f"/><stop offset="1" stop-color="#f6b900"/></linearGradient>
+    <linearGradient id="bluem" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#16a5ef"/><stop offset="1" stop-color="#0566b7"/></linearGradient>
+  </defs>
+  <rect width="750" height="980" fill="url(#bgm)"/>
+  <g opacity=".23" fill="#7bb7dd"><rect x="15" y="305" width="95" height="250"/><rect x="125" y="255" width="90" height="300"/><rect x="230" y="345" width="115" height="210"/></g>
+  <path d="M40 34C175-5 482 1 688 52c38 9 45 68 11 89-179 109-481 119-645 32C20 156 11 46 40 34Z" fill="url(#goldm)" stroke="#fff" stroke-width="11"/>
+  <path d="M70 70C243 23 473 29 655 76" fill="none" stroke="#fff5a4" stroke-width="8"/>
+  <text x="374" y="91" font-family="sans-serif" text-anchor="middle" font-size="30" font-weight="900" fill="#0755a1">大阪で仕事も住まいもまとめて相談！</text>
+  <text x="374" y="145" font-family="sans-serif" text-anchor="middle" font-size="62" font-weight="900" fill="#0755a1">寮 求人 大阪</text>
+  <g transform="translate(345 185)">
+    <circle cx="205" cy="145" r="88" fill="#f2c3a1"/>
+    <path d="M125 140c5-92 127-120 169-43 17 32 14 67 4 102-17-47-62-70-105-69-25 0-50 7-68 24Z" fill="#2c3442"/>
+    <circle cx="180" cy="151" r="6" fill="#222a34"/><circle cx="231" cy="151" r="6" fill="#222a34"/><path d="M185 184c15 12 31 12 46 0" fill="none" stroke="#b86d63" stroke-width="6" stroke-linecap="round"/>
+    <rect x="102" y="237" width="225" height="310" rx="78" fill="url(#bluem)"/>
+    <path d="M159 255h111" stroke="#fff" stroke-width="20" opacity=".95"/>
+    <rect x="246" y="303" width="55" height="42" rx="6" fill="#dff3ff"/>
+    <path d="M116 300c-56 40-85 105-92 164" stroke="#0f79cc" stroke-width="58" stroke-linecap="round"/><path d="M314 294c34 20 62 48 83 82" stroke="#0d70bf" stroke-width="56" stroke-linecap="round"/>
+    <path d="M29 457c-18 13-22 43-8 60 17 20 48 15 60-7" fill="#f2c3a1"/>
+    <path d="M393 378c29-70 47-130 55-193" stroke="#f2c3a1" stroke-width="34" stroke-linecap="round"/><circle cx="451" cy="161" r="31" fill="#f2c3a1"/><path d="M448 132l6-41M433 137l-18-36M466 137l21-34" stroke="#f2c3a1" stroke-width="15" stroke-linecap="round"/>
+    <path d="M152 542h72l-17 174h-104Z" fill="#27384b"/><path d="M232 542h72l47 174H247Z" fill="#27384b"/>
+  </g>
+  <g fill="#fff" stroke="#eab614" stroke-width="6">
+    <circle cx="185" cy="690" r="128"/><circle cx="565" cy="690" r="128"/><circle cx="185" cy="890" r="128"/><circle cx="565" cy="890" r="128"/>
+  </g>
+  <g font-family="sans-serif" text-anchor="middle" font-weight="900" fill="#0755a1">
+    <text x="185" y="650" font-size="24">大阪エリア</text><text x="185" y="690" font-size="35">寮付き求人</text><text x="185" y="724" font-size="19" fill="#333">条件からご案内</text>
+    <text x="565" y="650" font-size="24">急ぎの方</text><text x="565" y="690" font-size="35">入寮相談</text><text x="565" y="724" font-size="19" fill="#333">最短日程を確認</text>
+    <text x="185" y="850" font-size="24">経験不問</text><text x="185" y="890" font-size="35">未経験OK</text><text x="185" y="924" font-size="19" fill="#333">案件多数</text>
+    <text x="565" y="850" font-size="24">応募前から</text><text x="565" y="890" font-size="35">生活相談</text><text x="565" y="924" font-size="19" fill="#333">LINEで無料</text>
+  </g>
+  <g fill="#ffd43f"><path d="M70 225v42M49 246h42M670 230v38M651 249h38" stroke="#ffd43f" stroke-width="8" stroke-linecap="round"/></g>
+</svg>
