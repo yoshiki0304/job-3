@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#13d96a"/><stop offset="1" stop-color="#06c755"/></linearGradient></defs>
+<circle cx="120" cy="120" r="108" fill="url(#g)"/>
+<g transform="translate(38 58)">
+<rect x="0" y="0" width="164" height="104" rx="52" fill="#fff"/>
+<polygon points="44,93 28,133 76,103" fill="#fff"/>
+<text x="82" y="68" text-anchor="middle" font-size="42" font-family="Arial, sans-serif" font-weight="900" fill="#06c755">LINE</text>
+</g>
+</svg>
