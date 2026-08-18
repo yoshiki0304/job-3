@@ -27,13 +27,31 @@
   const intro = document.querySelector('.portal-intro');
   const stage = document.querySelector('.portal-stage');
   const copy = document.querySelector('.portal-copy');
-  const anchor = document.querySelector('.portal-hole-anchor');
+  const anchor = document.querySelector('.portal-one-anchor');
   const portal = document.querySelector('.portal-window');
   const scrollHint = document.querySelector('.portal-scroll');
   const sub = document.querySelector('.portal-sub');
+  const shell = document.querySelector('.page-shell');
 
-  if (intro && stage && copy && anchor && portal && window.gsap && window.ScrollTrigger) {
+  if (intro && stage && copy && anchor && portal && shell && window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
+
+    // Build a live DOM preview of the actual site instead of enlarging a tiny bitmap.
+    // This keeps text and images crisp during the portal transition.
+    if (!portal.querySelector('.portal-site-frame')) {
+      const frame = document.createElement('div');
+      frame.className = 'portal-site-frame';
+      frame.setAttribute('aria-hidden', 'true');
+
+      const shellClone = shell.cloneNode(true);
+      shellClone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+      shellClone.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+      shellClone.querySelectorAll('a,button,summary,input,select,textarea').forEach(el => {
+        el.setAttribute('tabindex', '-1');
+      });
+      frame.appendChild(shellClone);
+      portal.appendChild(frame);
+    }
 
     const syncPortal = () => {
       const stageRect = stage.getBoundingClientRect();
@@ -43,55 +61,78 @@
       const y = a.top + a.height / 2 - stageRect.top;
       const originX = a.left + a.width / 2 - c.left;
       const originY = a.top + a.height / 2 - c.top;
-      portal.style.left = `${x}px`;
-      portal.style.top = `${y}px`;
-      gsap.set(copy, { transformOrigin: `${originX}px ${originY}px` });
+      gsap.set(portal, { left:x, top:y });
+      gsap.set(copy, { transformOrigin:`${originX}px ${originY}px` });
       return { x, y };
-    };
-
-    const coverScale = () => {
-      const d = Math.hypot(window.innerWidth, window.innerHeight);
-      return Math.max(1, d / 18 * 1.18);
     };
 
     const mm = gsap.matchMedia();
     mm.add('(prefers-reduced-motion: no-preference)', () => {
-      syncPortal();
-      gsap.set(portal, { scale:.45, autoAlpha:0, borderRadius:'50%', force3D:true });
+      const pos = syncPortal();
+      gsap.set(portal, {
+        width:12,
+        height:34,
+        left:pos.x,
+        top:pos.y,
+        borderRadius:6,
+        autoAlpha:0,
+        force3D:false
+      });
       gsap.set(copy, { scale:1, autoAlpha:1, force3D:true });
+      gsap.set(stage, { backgroundColor:'#ffffff' });
 
       const tl = gsap.timeline({
         defaults:{ ease:'none' },
         scrollTrigger:{
           trigger:intro,
           start:'top top',
-          end:() => `+=${Math.max(window.innerHeight * 2.4, 1500)}`,
+          end:() => `+=${Math.max(window.innerHeight * 2.35, 1500)}`,
           pin:stage,
           scrub:1,
           anticipatePin:1,
           invalidateOnRefresh:true,
-          onRefresh:syncPortal
+          onRefresh:syncPortal,
+          onLeave:() => gsap.set(portal, { autoAlpha:0 }),
+          onEnterBack:() => gsap.set(portal, { autoAlpha:1 })
         }
       });
 
-      tl.to([scrollHint, sub], { autoAlpha:0, y:-12, duration:.12 }, 0)
-        .to(portal, { autoAlpha:1, scale:1.2, duration:.12 }, .10)
-        .to(copy, { scale:18, duration:.63 }, .12)
-        .to(portal, { scale:coverScale, borderRadius:'0%', duration:.62 }, .16)
-        .to(copy, { autoAlpha:0, duration:.15 }, .62)
-        .to(portal, { autoAlpha:1, duration:.18 }, .70);
+      tl.to([scrollHint, sub], { autoAlpha:0, y:-10, duration:.10 }, 0)
+        // The digit "1" becomes the entrance point.
+        .to(portal, { autoAlpha:1, duration:.08 }, .08)
+        .to(copy, { scale:15, duration:.58 }, .10)
+        // Expand the live-site window from the "1" to the whole viewport.
+        .to(portal, {
+          left:() => window.innerWidth / 2,
+          top:() => window.innerHeight / 2,
+          width:() => window.innerWidth,
+          height:() => window.innerHeight,
+          borderRadius:0,
+          duration:.58
+        }, .18)
+        .to(copy, { autoAlpha:0, duration:.14 }, .57)
+        .to(stage, { backgroundColor:'rgba(255,255,255,0)', duration:.12 }, .72);
 
-      const refresh = () => { syncPortal(); ScrollTrigger.refresh(); };
+      const refresh = () => {
+        syncPortal();
+        ScrollTrigger.refresh();
+      };
       window.addEventListener('load', refresh, { once:true });
-      return () => tl.scrollTrigger?.kill();
+      window.addEventListener('resize', syncPortal);
+
+      return () => {
+        window.removeEventListener('resize', syncPortal);
+        tl.scrollTrigger?.kill();
+        tl.kill();
+      };
     });
 
     mm.add('(prefers-reduced-motion: reduce)', () => {
-      intro.style.height = 'auto';
-      stage.style.height = '100vh';
-      gsap.set(copy,{ autoAlpha:1, scale:1 });
-      gsap.set(portal,{ autoAlpha:0 });
+      intro.style.display = 'none';
     });
+  } else if (intro) {
+    // If GSAP/CDN is unavailable, never trap the user on the intro screen.
+    intro.style.display = 'none';
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(anchorEl => {
