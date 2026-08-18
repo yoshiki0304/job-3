@@ -747,3 +747,37 @@ body.intro-complete .mobile-fixed{
 @media (max-width:560px){
   .full-money-banner{margin-top:-126px!important;z-index:8!important}
 }
+
+/* ===== user-provided bonus banner image + raise to thigh area ===== */
+.full-money-banner.image-banner{
+  background:none!important;
+  border:0!important;
+  box-shadow:0 14px 28px rgba(128,34,0,.26)!important;
+  padding:0!important;
+  border-radius:18px!important;
+  overflow:hidden!important;
+  position:relative!important;
+  z-index:10!important;
+  width:100%!important;
+  margin-top:-160px!important;
+}
+.full-money-banner.image-banner::before,
+.full-money-banner.image-banner::after,
+.full-money-banner.image-banner .bonus-ribbon,
+.full-money-banner.image-banner .bonus-kirakira,
+.full-money-banner.image-banner small,
+.full-money-banner.image-banner span,
+.full-money-banner.image-banner b,
+.full-money-banner.image-banner em,
+.full-money-banner.image-banner .bonus-gold-plate{display:none!important;content:none!important}
+.full-money-banner.image-banner img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+}
+.hero-photo-pro,.hero-visual-wrap{z-index:1!important}
+.full-money-banner.image-banner{z-index:12!important}
+.hero-strip-pro{margin-top:12px!important}
+@media (max-width:560px){
+  .full-money-banner.image-banner{margin-top:-172px!important;z-index:12!important}
+}
