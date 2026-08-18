@@ -450,3 +450,75 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   .hero-visual-wrap{min-height:320px!important}
   .hero-photo-pro img{width:270px!important}
 }
+
+/* ===== remove company info block / keep privacy link / red top theme ===== */
+.footer-brand-area{display:none!important}
+.footer-privacy{display:inline-block!important;margin-top:6px!important;font-size:11px!important;color:#155cb4!important;text-decoration:underline!important;font-weight:800!important}
+
+/* Top hero recolor to red */
+.pro-flyer-hero{
+  background:linear-gradient(180deg,#ffb6b6 0%,#ff7d7d 18%,#f84f4f 46%,#de2121 74%,#bf1010 100%)!important;
+  box-shadow:0 26px 60px rgba(166,10,10,.28)!important;
+}
+.pro-flyer-hero:before{
+  background:radial-gradient(circle at 78% 22%,rgba(255,255,255,.16),transparent 26%),repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 5px,rgba(255,255,255,0) 5px 18px)!important;
+  opacity:.45!important;
+}
+.hero-band{
+  background:linear-gradient(180deg,#b90d16,#84060d)!important;
+  color:#fff!important;
+}
+.hero-copy-top{color:#fff0c7!important}
+.hero-copy-pro h1{color:#111!important;text-shadow:-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,2px 2px 0 #fff,0 6px 12px rgba(0,0,0,.14)!important}
+.hero-copy-sub{color:#fff6d2!important}
+.hero-checks-left span{
+  background:linear-gradient(180deg,#b30f17,#7e0b12)!important;
+  color:#fff!important;
+}
+.hero-speech-pro{color:#6a1111!important;border:2px solid rgba(185,13,22,.18)!important}
+.hero-strip-pro article{background:rgba(255,255,255,.96)!important}
+.hero-dateline-pro{color:#fff!important;text-shadow:0 2px 8px rgba(0,0,0,.18)!important}
+.hero-dateline-pro b{color:#fff6a8!important}
+
+/* ===== final urgent fixes for duplicate top, transparent full-body hero, luxurious bonus ===== */
+body.intro-active .real-shell,
+body.intro-active .mobile-fixed{
+  opacity:0!important;
+  pointer-events:none!important;
+}
+body.intro-complete .real-shell,
+body.intro-complete .mobile-fixed{
+  opacity:1!important;
+  pointer-events:auto!important;
+}
+.real-shell,
+.mobile-fixed{transition:opacity .25s ease}
+
+.hero-grid-pro{grid-template-columns:41% 59%!important;gap:8px!important}
+.hero-copy-pro h1{font-size:41px!important}
+.hero-copy-sub{font-size:11px!important;margin-bottom:8px!important}
+.hero-visual-wrap{min-height:350px!important;overflow:visible!important;align-items:flex-end!important}
+.hero-photo-pro img{width:286px!important;max-width:none!important;align-self:flex-end!important;object-fit:contain!important;filter:drop-shadow(0 20px 28px rgba(0,0,0,.18))!important}
+.hero-speech-pro{top:10px!important;right:2px!important}
+
+.full-money-banner{padding:14px 12px 16px!important;border-radius:20px!important;border:4px solid rgba(255,255,255,.95)!important;
+  background:
+   radial-gradient(circle at 50% 42%, rgba(255,249,201,1) 0 11%, rgba(255,228,95,.95) 11% 22%, rgba(255,174,29,.92) 22% 42%, rgba(250,87,28,.94) 42% 64%, rgba(214,22,63,.98) 64% 100%),
+   linear-gradient(135deg,#ffe85d 0%,#ffb12a 32%,#ff7a1e 55%,#ea3a2a 76%,#d0154e 100%)!important;
+  box-shadow:0 18px 34px rgba(186,21,44,.34), inset 0 0 0 2px rgba(255,255,255,.32)!important;
+}
+.full-money-banner:before{content:"";position:absolute;inset:-30px;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.36) 0 7deg,transparent 7deg 16deg);opacity:.42;pointer-events:none}
+.full-money-banner:after{content:"✦ ✦ ✦ ✦";position:absolute;right:10px;top:9px;color:#fff6a7;font-size:15px;letter-spacing:4px;text-shadow:0 0 8px rgba(255,255,255,.55)}
+.full-money-banner small{font-size:13px!important;padding:5px 13px!important;background:#fff!important;color:#df3658!important;box-shadow:0 3px 0 rgba(145,24,46,.12)!important}
+.full-money-banner span{font-size:21px!important;letter-spacing:.03em!important;color:#fffdf3!important;text-shadow:0 2px 0 rgba(132,17,17,.18)!important}
+.full-money-banner b{font-size:70px!important;line-height:.88!important;color:#fff39d!important;text-shadow:-2px -2px 0 #9f1208,2px -2px 0 #9f1208,-2px 2px 0 #9f1208,2px 2px 0 #9f1208,0 4px 0 #9f1208,0 0 22px rgba(255,255,255,.24)!important}
+.full-money-banner em{font-size:29px!important;letter-spacing:.04em!important;color:#fff!important;text-shadow:0 2px 0 rgba(115,15,15,.2)!important}
+
+@media (max-width:560px){
+  .hero-grid-pro{grid-template-columns:41% 59%!important}
+  .hero-copy-pro h1{font-size:41px!important}
+  .hero-copy-sub{font-size:11px!important}
+  .hero-visual-wrap{min-height:350px!important}
+  .hero-photo-pro img{width:286px!important}
+  .full-money-banner b{font-size:70px!important}
+}

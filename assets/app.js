@@ -49,6 +49,7 @@
       frame.setAttribute('aria-hidden', 'true');
 
       const shellClone = shell.cloneNode(true);
+      shellClone.classList.remove('real-shell');
       shellClone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
       shellClone.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
       shellClone.querySelectorAll('a,button,summary,input,select,textarea').forEach(el => {
@@ -101,6 +102,8 @@
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       sizeIntro();
       setStartState();
+      document.body.classList.add('intro-active');
+      document.body.classList.remove('intro-complete');
 
       tl = gsap.timeline({
         defaults:{ ease:'none' },
@@ -116,12 +119,16 @@
           onEnterBack:() => {
             // Re-enter the intro when the user scrolls back up from the LP.
             intro.style.pointerEvents = '';
+            document.body.classList.add('intro-active');
+            document.body.classList.remove('intro-complete');
             gsap.set(stage, { autoAlpha:1, display:'grid' });
             gsap.set(portal, { autoAlpha:1, display:'block' });
           },
           onLeave:() => {
             // Hide the preview layer completely once the real LP takes over.
             intro.style.pointerEvents = 'none';
+            document.body.classList.remove('intro-active');
+            document.body.classList.add('intro-complete');
             gsap.set(portal, { autoAlpha:0, display:'none' });
             gsap.set(stage, { autoAlpha:0, display:'none' });
           },
@@ -130,6 +137,8 @@
             gsap.set(stage, { display:'grid' });
             gsap.set(portal, { display:'block' });
             intro.style.pointerEvents = '';
+            document.body.classList.add('intro-active');
+            document.body.classList.remove('intro-complete');
             setStartState();
           }
         }
@@ -170,11 +179,15 @@
 
     mm.add('(prefers-reduced-motion: reduce)', () => {
       intro.style.display = 'none';
+      document.body.classList.remove('intro-active');
+      document.body.classList.add('intro-complete');
       window.scrollTo(0, 0);
     });
   } else if (intro) {
     // If GSAP/CDN is unavailable, never trap the user on the intro screen.
     intro.style.display = 'none';
+    document.body.classList.remove('intro-active');
+    document.body.classList.add('intro-complete');
     window.scrollTo(0, 0);
   }
 
