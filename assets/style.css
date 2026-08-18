@@ -781,3 +781,51 @@ body.intro-complete .mobile-fixed{
 @media (max-width:560px){
   .full-money-banner.image-banner{margin-top:-172px!important;z-index:12!important}
 }
+
+/* ===== mobile position / smoother page feel / show full photos ===== */
+@media (max-width:560px){
+  /* move the top woman a bit more to the right */
+  .hero-photo-pro{align-items:flex-end!important}
+  .hero-photo-pro img{transform:translateX(18px)!important}
+  .hero-speech-pro{right:-4px!important}
+}
+
+/* show more of each image rather than cropping */
+.hero-strip-pro img,
+.support-photo-card img,
+.job-sub-card img,
+.reason-story-grid img,
+.voice-photo-card img,
+.flow-photo-grid img,
+.consult-card-pro > img,
+.job-lead-card img{
+  object-fit:contain!important;
+  background:#fff!important;
+}
+.job-lead-card,
+.job-sub-card,
+.support-photo-card,
+.voice-photo-card,
+.reason-story-grid article,
+.flow-photo-grid article,
+.consult-card-pro{background:#fff!important}
+
+/* maintain fuller visible areas with a little more height where needed */
+.consult-card-pro > img{padding:6px!important}
+.job-lead-card img{padding:8px!important}
+.support-photo-card img{padding:6px!important}
+.job-sub-card img,
+.reason-story-grid img,
+.voice-photo-card img,
+.flow-photo-grid img,
+.hero-strip-pro img{padding:4px!important}
+
+@media (max-width:560px){
+  .consult-card-pro > img{max-height:none!important;height:180px!important}
+  .support-photo-card img{height:140px!important}
+  .job-sub-card img{height:100px!important}
+  .reason-story-grid img{height:78px!important}
+  .voice-photo-card img{height:72px!important}
+  .flow-photo-grid img{height:94px!important}
+  .hero-strip-pro img{height:62px!important}
+}

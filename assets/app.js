@@ -41,6 +41,7 @@
 
   if (intro && stage && copy && anchor && portal && shell && window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize:true });
 
     // Live DOM preview keeps the transition crisp at any zoom level.
     if (!portal.querySelector('.portal-site-frame')) {
@@ -161,17 +162,24 @@
         // Keep the completed LP preview pinned until the real LP reaches top.
         .to(portal, { autoAlpha:1, duration:.33 }, .67);
 
+      let lastRefreshWidth = window.innerWidth;
       const refresh = () => {
         sizeIntro();
         if (window.scrollY < 5) setStartState();
         ScrollTrigger.refresh();
       };
+      const handleResize = () => {
+        const widthChanged = Math.abs(window.innerWidth - lastRefreshWidth) > 30;
+        if (!widthChanged) return; // avoid mobile browser UI resize jitter
+        lastRefreshWidth = window.innerWidth;
+        refresh();
+      };
 
       window.addEventListener('load', refresh, { once:true });
-      window.addEventListener('resize', refresh);
+      window.addEventListener('resize', handleResize, { passive:true });
 
       return () => {
-        window.removeEventListener('resize', refresh);
+        window.removeEventListener('resize', handleResize);
         tl?.scrollTrigger?.kill(true);
         tl?.kill();
       };
