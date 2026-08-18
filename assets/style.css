@@ -945,3 +945,70 @@ body.intro-complete .mobile-fixed{
     padding-right:0!important;
   }
 }
+
+/* ===== fancy hero support cards like the provided reference ===== */
+.hero-checks-fancy{gap:9px!important}
+.hero-check-card{
+  position:relative;
+  padding-top:18px;
+}
+.hero-check-tag{
+  position:relative;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  max-width:calc(100% - 20px);
+  padding:6px 14px 6px 14px;
+  background:linear-gradient(180deg,#1b78ff 0%,#0b50be 100%);
+  color:#fff46a;
+  font-size:10px;
+  line-height:1.2;
+  font-weight:900;
+  border-radius:0 0 12px 0;
+  clip-path:polygon(0 0,100% 0,92% 100%,0 100%);
+  box-shadow:0 6px 14px rgba(0,55,146,.18);
+}
+.hero-check-main{
+  position:relative;
+  z-index:3;
+  margin-top:-4px;
+  margin-left:10px;
+  padding:9px 14px 8px;
+  background:linear-gradient(180deg,#ff8b1f 0%,#ef4f10 100%);
+  color:#fff;
+  font-size:14px;
+  line-height:1.25;
+  font-weight:900;
+  border-radius:2px 2px 10px 10px;
+  clip-path:polygon(0 0,100% 0,93% 100%,0 100%);
+  box-shadow:0 8px 18px rgba(135,34,0,.16);
+}
+.hero-check-sub{
+  position:relative;
+  z-index:1;
+  margin-top:-2px;
+  padding:16px 14px 10px;
+  background:linear-gradient(180deg,#0f3f7a 0%,#0b2f5d 100%);
+  color:#fff;
+  font-size:11px;
+  line-height:1.35;
+  font-weight:800;
+  border-radius:0 0 14px 14px;
+  clip-path:polygon(0 0,100% 0,90% 100%,0 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 8px 16px rgba(0,0,0,.10);
+}
+.hero-check-card:nth-child(2) .hero-check-tag{background:linear-gradient(180deg,#2184ff,#0f60d1)}
+.hero-check-card:nth-child(3) .hero-check-tag{background:linear-gradient(180deg,#2391ff,#1266da)}
+.hero-check-card:nth-child(4) .hero-check-tag{background:linear-gradient(180deg,#2a98ff,#1870e4)}
+.hero-check-card:nth-child(2) .hero-check-main{background:linear-gradient(180deg,#ff9124,#f45914)}
+.hero-check-card:nth-child(3) .hero-check-main{background:linear-gradient(180deg,#ff982a,#f36018)}
+.hero-check-card:nth-child(4) .hero-check-main{background:linear-gradient(180deg,#ff9f31,#f4661d)}
+
+@media (max-width:560px){
+  .hero-checks-fancy{gap:8px!important}
+  .hero-check-card{padding-top:15px}
+  .hero-check-tag{min-height:24px;padding:5px 11px;font-size:8px;max-width:calc(100% - 16px)}
+  .hero-check-main{margin-left:8px;padding:8px 11px 7px;font-size:12px}
+  .hero-check-sub{padding:13px 11px 9px;font-size:9px;line-height:1.3}
+}
