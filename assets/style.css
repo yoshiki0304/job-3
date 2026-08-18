@@ -906,3 +906,42 @@ body.intro-complete .mobile-fixed{
     padding:12px 12px 14px!important;
   }
 }
+
+/* ===== remove all unwanted left/right gaps on mobile ===== */
+@media (max-width:560px){
+  html,body,.page-shell{overflow-x:hidden!important}
+  .site-header{padding-left:10px!important;padding-right:10px!important}
+  .pro-flyer-hero,
+  .photo-message-row,
+  .story-compare-row,
+  .support-photo-board,
+  .job-showcase-area,
+  .reason-story-board,
+  .compare-panel-card,
+  .voice-photo-board,
+  .flow-photo-board,
+  .cta-area,
+  .faq-panel,
+  .footer-brand-area{
+    margin-left:0!important;
+    margin-right:0!important;
+    width:100%!important;
+  }
+  .pro-flyer-hero,
+  .support-photo-board,
+  .job-showcase-area,
+  .reason-story-board,
+  .compare-panel-card,
+  .voice-photo-board,
+  .flow-photo-board,
+  .faq-panel,
+  .footer-brand-area{
+    border-radius:0!important;
+  }
+  .photo-message-row,
+  .story-compare-row,
+  .cta-area{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+}
