@@ -2,14 +2,21 @@
   const lineUrl = 'https://lin.ee/xo4sCJy';
   document.querySelectorAll('.js-line-link').forEach(a => a.href = lineUrl);
 
+  // Always begin from the intro when the page is opened normally.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) window.scrollTo(0, 0);
+
   const today = document.getElementById('todayText');
   if (today) {
-    const parts = new Intl.DateTimeFormat('ja-JP', { timeZone:'Asia/Tokyo', month:'numeric', day:'numeric' }).formatToParts(new Date());
+    const parts = new Intl.DateTimeFormat('ja-JP', {
+      timeZone:'Asia/Tokyo', month:'numeric', day:'numeric'
+    }).formatToParts(new Date());
     const month = parts.find(p => p.type === 'month')?.value;
     const day = parts.find(p => p.type === 'day')?.value;
     if (month && day) today.textContent = `本日${month}月${day}日`;
   }
 
+  // Normal section reveal animation.
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -18,7 +25,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
+    }, { threshold:.10, rootMargin:'0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   } else {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
@@ -36,8 +43,8 @@
   if (intro && stage && copy && anchor && portal && shell && window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Build a live DOM preview of the actual site instead of enlarging a tiny bitmap.
-    // This keeps text and images crisp during the portal transition.
+    // Show the real LP design inside the portal during the zoom.
+    // This is DOM, not a low-resolution screenshot, so it stays sharp.
     if (!portal.querySelector('.portal-site-frame')) {
       const frame = document.createElement('div');
       frame.className = 'portal-site-frame';
@@ -53,7 +60,11 @@
       portal.appendChild(frame);
     }
 
+    let finished = false;
+    let tl;
+
     const syncPortal = () => {
+      // This is called at the top of the page before the zoom begins.
       const stageRect = stage.getBoundingClientRect();
       const a = anchor.getBoundingClientRect();
       const c = copy.getBoundingClientRect();
@@ -64,6 +75,42 @@
       gsap.set(portal, { left:x, top:y });
       gsap.set(copy, { transformOrigin:`${originX}px ${originY}px` });
       return { x, y };
+    };
+
+    const finishIntro = () => {
+      if (finished) return;
+      finished = true;
+
+      // Keep the portal visible until the exact moment we switch to the real LP.
+      gsap.set(portal, { autoAlpha:1 });
+
+      requestAnimationFrame(() => {
+        const st = tl?.scrollTrigger;
+        if (st) st.kill(true);
+        if (tl) tl.kill();
+
+        // Remove the whole intro and its pin-spacing, then start the actual LP at TOP.
+        intro.style.display = 'none';
+        portal.style.display = 'none';
+        stage.style.display = 'none';
+        document.documentElement.classList.add('intro-complete');
+
+        // Stop touch/mouse momentum from skipping past the LP top during the handoff.
+        const oldOverflow = document.body.style.overflow;
+        const oldBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        document.body.style.overflow = 'hidden';
+        window.scrollTo(0, 0);
+
+        requestAnimationFrame(() => window.scrollTo(0, 0));
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          document.body.style.overflow = oldOverflow;
+          document.documentElement.style.scrollBehavior = oldBehavior;
+          // Refresh reveal positions after the document height changes.
+          if (window.ScrollTrigger) ScrollTrigger.refresh();
+        }, 120);
+      });
     };
 
     const mm = gsap.matchMedia();
@@ -81,58 +128,67 @@
       gsap.set(copy, { scale:1, autoAlpha:1, force3D:true });
       gsap.set(stage, { backgroundColor:'#ffffff' });
 
-      const tl = gsap.timeline({
+      tl = gsap.timeline({
         defaults:{ ease:'none' },
         scrollTrigger:{
           trigger:intro,
           start:'top top',
-          end:() => `+=${Math.max(window.innerHeight * 2.35, 1500)}`,
+          end:() => `+=${Math.max(window.innerHeight * 2.1, 1350)}`,
           pin:stage,
           scrub:1,
           anticipatePin:1,
           invalidateOnRefresh:true,
-          onRefresh:syncPortal,
-          onLeave:() => gsap.set(portal, { autoAlpha:0 }),
-          onEnterBack:() => gsap.set(portal, { autoAlpha:1 })
+          onLeave:finishIntro
         }
       });
 
       tl.to([scrollHint, sub], { autoAlpha:0, y:-10, duration:.10 }, 0)
-        // The digit "1" becomes the entrance point.
-        .to(portal, { autoAlpha:1, duration:.08 }, .08)
-        .to(copy, { scale:15, duration:.58 }, .10)
-        // Expand the live-site window from the "1" to the whole viewport.
+        // The number "1" is the entrance point.
+        .to(portal, { autoAlpha:1, duration:.07 }, .07)
+        .to(copy, { scale:16, duration:.58 }, .10)
+        // Grow the live LP preview from the "1" until it fills the viewport.
         .to(portal, {
           left:() => window.innerWidth / 2,
           top:() => window.innerHeight / 2,
           width:() => window.innerWidth,
           height:() => window.innerHeight,
           borderRadius:0,
-          duration:.58
+          duration:.56
         }, .18)
-        .to(copy, { autoAlpha:0, duration:.14 }, .57)
-        .to(stage, { backgroundColor:'rgba(255,255,255,0)', duration:.12 }, .72);
+        .to(copy, { autoAlpha:0, duration:.14 }, .58)
+        // Hold the finished LP preview on screen until pinning ends.
+        .to(portal, { autoAlpha:1, duration:.24 }, .76);
 
-      const refresh = () => {
-        syncPortal();
+      const refreshAtTop = () => {
+        if (finished) return;
+        if (window.scrollY < 5) {
+          gsap.set(copy, { scale:1, autoAlpha:1 });
+          const p = syncPortal();
+          gsap.set(portal, { left:p.x, top:p.y, width:12, height:34, borderRadius:6, autoAlpha:0 });
+        }
         ScrollTrigger.refresh();
       };
-      window.addEventListener('load', refresh, { once:true });
-      window.addEventListener('resize', syncPortal);
+
+      window.addEventListener('load', refreshAtTop, { once:true });
+      window.addEventListener('resize', refreshAtTop);
 
       return () => {
-        window.removeEventListener('resize', syncPortal);
-        tl.scrollTrigger?.kill();
-        tl.kill();
+        window.removeEventListener('resize', refreshAtTop);
+        if (!finished) {
+          tl?.scrollTrigger?.kill(true);
+          tl?.kill();
+        }
       };
     });
 
     mm.add('(prefers-reduced-motion: reduce)', () => {
       intro.style.display = 'none';
+      window.scrollTo(0, 0);
     });
   } else if (intro) {
     // If GSAP/CDN is unavailable, never trap the user on the intro screen.
     intro.style.display = 'none';
+    window.scrollTo(0, 0);
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(anchorEl => {
@@ -142,7 +198,10 @@
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 8, behavior:'smooth' });
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.scrollY - 8,
+        behavior:'smooth'
+      });
     });
   });
 })();
