@@ -115,16 +115,21 @@
           invalidateOnRefresh:true,
           onEnterBack:() => {
             // Re-enter the intro when the user scrolls back up from the LP.
-            gsap.set(stage, { autoAlpha:1 });
-            gsap.set(portal, { autoAlpha:1 });
+            intro.style.pointerEvents = '';
+            gsap.set(stage, { autoAlpha:1, display:'grid' });
+            gsap.set(portal, { autoAlpha:1, display:'block' });
           },
           onLeave:() => {
-            // At this exact point the real LP is aligned at viewport top.
-            // Hide the pinned preview and hand control to the actual page.
-            gsap.set(stage, { autoAlpha:0 });
+            // Hide the preview layer completely once the real LP takes over.
+            intro.style.pointerEvents = 'none';
+            gsap.set(portal, { autoAlpha:0, display:'none' });
+            gsap.set(stage, { autoAlpha:0, display:'none' });
           },
           onLeaveBack:() => {
             // Fully restore the first screen when returning to page top.
+            gsap.set(stage, { display:'grid' });
+            gsap.set(portal, { display:'block' });
+            intro.style.pointerEvents = '';
             setStartState();
           }
         }
