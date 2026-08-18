@@ -210,3 +210,91 @@
   .policy-box p{font-size:8px}
   .back-link{font-size:8px}
 }
+
+
+/* === Balanced reference-like hero override === */
+.hero-balanced{position:relative;overflow:hidden;padding:0 0 18px;background:#f6f0e4}
+.hero-balanced:before{content:"";position:absolute;inset:74px 0 0;background:
+radial-gradient(circle at 22% 18%,rgba(255,255,255,.92),rgba(255,255,255,.18) 38%,transparent 60%),
+repeating-conic-gradient(from 180deg at 35% 45%,rgba(255,219,60,.12) 0deg 7deg,transparent 7deg 18deg);pointer-events:none}
+.hero-balanced .hero-topband{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;background:linear-gradient(180deg,#d90000,#bd0000);color:#fff;padding:12px 16px;border-bottom:4px solid #9d0000}
+.hero-balanced .hero-top-title{font-size:26px;font-weight:900;letter-spacing:-.04em}
+.hero-balanced .hero-top-badge{background:var(--yellow);color:#111;padding:7px 11px;border-radius:7px;font-size:11px;line-height:1.2;font-weight:900;text-align:center;box-shadow:0 3px 0 rgba(0,0,0,.14)}
+.hero-balanced .hero-top-badge b{display:block;font-size:15px;margin-top:1px}
+
+.hero-balanced .hero-main{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;gap:0;align-items:end;padding:16px 16px 6px;background:linear-gradient(180deg,rgba(255,255,255,.74),rgba(255,255,255,.3))}
+.hero-balanced .hero-copy{position:relative;z-index:2;padding:8px 8px 14px 0}
+.hero-balanced .hero-kicker{display:inline-block;margin:0 0 8px;padding:3px 0;color:#111;font-size:17px;line-height:1.2;font-weight:900;background:none;border:0;box-shadow:none}
+.hero-balanced .hero-catch{margin:0;color:#d90000;font-size:44px;line-height:1;font-weight:900;letter-spacing:-.055em;text-shadow:0 2px 0 #fff}
+.hero-balanced h1{margin:2px 0 10px;line-height:1;font-weight:900;letter-spacing:-.07em;color:#111}
+.hero-balanced h1 span{display:block;font-size:82px;color:#111;-webkit-text-stroke:2px #fff;text-shadow:3px 3px 0 rgba(0,0,0,.1);background:none}
+.hero-balanced h1 small{display:block;font-size:36px;font-weight:900;letter-spacing:-.04em;color:#111;text-align:right;padding-right:18px;position:relative}
+.hero-balanced h1 small:before{content:"";position:absolute;right:16px;bottom:3px;width:150px;height:9px;background:var(--yellow);transform:skew(-20deg);z-index:-1}
+.hero-balanced .hero-checks{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:7px}
+.hero-balanced .hero-checks li{background:#111;color:#ffe950;border-radius:5px;padding:7px 10px;font-size:12px;line-height:1.2;font-weight:900;box-shadow:0 3px 0 rgba(0,0,0,.12)}
+.hero-balanced .hero-checks li:before{content:"✓";color:#ffec47;margin-right:5px}
+
+.hero-balanced .hero-visual{position:relative;min-height:390px;display:flex;align-items:flex-end;justify-content:center;margin:0}
+.hero-balanced .hero-photo-card{position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;overflow:visible;background:transparent}
+.hero-balanced .hero-photo-card img{width:100%;max-width:320px;height:auto;object-fit:contain;object-position:bottom center;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(0 11px 20px rgba(0,0,0,.13));-webkit-mask-image:none;mask-image:none}
+.hero-balanced .hero-medal{position:absolute;right:4px;top:112px;z-index:3;width:126px;height:126px;border-radius:50%;background:radial-gradient(circle at 50% 42%,#fffef8 0%,#fff7d4 62%,#e7bd42 100%);border:5px solid #d5a421;display:flex;align-items:center;justify-content:center;text-align:center;color:#111;font-size:13px;line-height:1.3;font-weight:900;box-shadow:0 7px 15px rgba(0,0,0,.11)}
+.hero-balanced .hero-medal:before{content:"";position:absolute;inset:7px;border:1px solid rgba(195,139,15,.65);border-radius:50%}
+.hero-balanced .hero-medal b{display:block;color:#d30000;font-size:20px;line-height:1;margin:2px 0}
+
+.hero-balanced .hero-bonus-wide{position:relative;overflow:hidden;margin:0 16px;padding:12px 16px 10px;background:
+radial-gradient(circle at 50% 45%,rgba(255,253,198,.98) 0%,rgba(255,225,69,.98) 30%,rgba(255,175,0,.96) 56%,rgba(255,88,0,.95) 80%,rgba(241,45,38,.96) 100%);
+border:4px solid #cf160b;border-radius:14px;box-shadow:0 7px 0 rgba(144,17,0,.16);text-align:left}
+.hero-balanced .hero-bonus-wide:before{content:"";position:absolute;inset:-16px;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.24) 0deg 6deg,transparent 6deg 16deg);mix-blend-mode:screen;opacity:.65}
+.hero-balanced .hero-bonus-wide:after{content:"";position:absolute;inset:7px;border:1px solid rgba(255,255,255,.65);border-radius:9px}
+.hero-balanced .hero-bonus-wide>*{position:relative;z-index:1}
+.hero-balanced .bonus-label{font-size:18px;font-weight:900;color:#111;text-shadow:0 2px 0 rgba(255,255,255,.75);margin-bottom:2px}
+.hero-balanced .bonus-mainline{display:flex;align-items:flex-end;gap:4px;line-height:.9}
+.hero-balanced .bonus-mainline span{font-size:47px;font-weight:900;color:#fff;-webkit-text-stroke:2px #cf0800;text-shadow:0 3px 0 rgba(140,0,0,.16)}
+.hero-balanced .bonus-mainline b{font-size:96px;font-weight:900;color:#e20000;-webkit-text-stroke:4px #fff;text-shadow:0 5px 0 rgba(140,0,0,.16)}
+.hero-balanced .bonus-mainline em{font-style:normal;font-size:47px;font-weight:900;color:#e20000;-webkit-text-stroke:2px #fff;margin-bottom:6px}
+.hero-balanced .hero-bonus-wide strong{display:block;margin-top:-2px;text-align:center;font-size:58px;line-height:1;font-weight:900;color:#111;-webkit-text-stroke:2px #fff;text-shadow:0 3px 0 rgba(255,255,255,.2)}
+.hero-balanced .hero-bonus-wide small{display:block;margin-top:4px;text-align:right;font-size:10px;color:#111;font-weight:900}
+.hero-balanced .bonus-pulse{animation:balancedBonusPulse 2.2s ease-in-out infinite;transform-origin:center}
+@keyframes balancedBonusPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.hero-balanced .hero-date{padding:7px 0 5px;text-align:center;font-size:16px;font-weight:900;color:#222}
+.hero-balanced .hero-date b{color:#e60000}
+.hero-balanced .hero-line{margin:0 16px 10px}
+.hero-balanced .hero-features{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 16px}
+.hero-balanced .hero-features article{background:#fff;border:2px solid var(--blue);padding:7px 5px;text-align:center;box-shadow:0 4px 0 rgba(21,87,174,.14)}
+.hero-balanced .hero-features b{display:block;color:var(--blue);font-size:11px;line-height:1.2}
+.hero-balanced .hero-features span{display:block;font-size:8px;line-height:1.3;margin-top:3px;color:#555}
+
+@media(max-width:560px){
+  .hero-balanced{padding:0 0 12px}
+  .hero-balanced .hero-topband{padding:10px 10px 9px;gap:8px}
+  .hero-balanced .hero-top-title{font-size:17px}
+  .hero-balanced .hero-top-badge{padding:5px 7px;font-size:7px}
+  .hero-balanced .hero-top-badge b{font-size:10px}
+  .hero-balanced .hero-main{grid-template-columns:1.05fr .95fr;padding:10px 9px 6px}
+  .hero-balanced .hero-copy{padding:4px 5px 8px 0}
+  .hero-balanced .hero-kicker{font-size:9px;margin-bottom:4px}
+  .hero-balanced .hero-catch{font-size:28px}
+  .hero-balanced h1 span{font-size:48px;-webkit-text-stroke:1.5px #fff}
+  .hero-balanced h1 small{font-size:22px;padding-right:6px}
+  .hero-balanced h1 small:before{right:6px;width:82px;height:6px;bottom:2px}
+  .hero-balanced .hero-checks{gap:4px}
+  .hero-balanced .hero-checks li{font-size:7px;padding:4px 6px}
+  .hero-balanced .hero-visual{min-height:250px}
+  .hero-balanced .hero-photo-card img{max-width:205px}
+  .hero-balanced .hero-medal{width:76px;height:76px;right:0;top:66px;font-size:7px;border-width:3px}
+  .hero-balanced .hero-medal b{font-size:12px}
+  .hero-balanced .hero-bonus-wide{margin:0 9px;padding:8px 9px 7px;border-width:3px;border-radius:10px}
+  .hero-balanced .bonus-label{font-size:10px}
+  .hero-balanced .bonus-mainline{gap:2px}
+  .hero-balanced .bonus-mainline span{font-size:25px;-webkit-text-stroke:1.3px #cf0800}
+  .hero-balanced .bonus-mainline b{font-size:54px;-webkit-text-stroke:2px #fff}
+  .hero-balanced .bonus-mainline em{font-size:25px;-webkit-text-stroke:1.2px #fff;margin-bottom:3px}
+  .hero-balanced .hero-bonus-wide strong{font-size:31px;-webkit-text-stroke:1.2px #fff}
+  .hero-balanced .hero-bonus-wide small{font-size:6px}
+  .hero-balanced .hero-date{font-size:11px;padding:5px 0 3px}
+  .hero-balanced .hero-line{margin:0 9px 7px}
+  .hero-balanced .hero-features{gap:3px;margin:0 9px}
+  .hero-balanced .hero-features article{padding:4px 2px}
+  .hero-balanced .hero-features b{font-size:6.5px}
+  .hero-balanced .hero-features span{font-size:5.2px}
+}
