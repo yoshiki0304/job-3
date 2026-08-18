@@ -1057,3 +1057,33 @@ body.intro-complete .mobile-fixed{
     border-radius:12px!important;
   }
 }
+
+/* ===== make the 4 support phrases single-line even if they overlap slightly with the woman ===== */
+.hero-checks-blue-simple,
+.hero-checks-blue-simple .hero-check-card,
+.hero-checks-blue-simple .hero-check-main{
+  overflow:visible!important;
+}
+.hero-checks-blue-simple .hero-check-main{
+  white-space:nowrap!important;
+  width:max-content!important;
+  max-width:none!important;
+  min-width:190px!important;
+  font-size:12px!important;
+  padding:10px 14px!important;
+  position:relative!important;
+  z-index:6!important;
+}
+.hero-photo-pro{position:relative!important;z-index:3!important}
+.hero-checks-blue-simple{position:relative!important;z-index:5!important}
+
+@media (max-width:560px){
+  .hero-checks-blue-simple .hero-check-main{
+    white-space:nowrap!important;
+    width:max-content!important;
+    max-width:none!important;
+    min-width:180px!important;
+    font-size:10px!important;
+    padding:9px 12px!important;
+  }
+}
