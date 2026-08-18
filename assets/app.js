@@ -2,7 +2,6 @@
   const lineUrl = 'https://lin.ee/xo4sCJy';
   document.querySelectorAll('.js-line-link').forEach(a => a.href = lineUrl);
 
-  // Always begin from the intro when the page is opened normally.
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   if (!location.hash) window.scrollTo(0, 0);
 
@@ -16,7 +15,7 @@
     if (month && day) today.textContent = `本日${month}月${day}日`;
   }
 
-  // Normal section reveal animation.
+  // Normal LP reveal animation.
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -43,8 +42,7 @@
   if (intro && stage && copy && anchor && portal && shell && window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Show the real LP design inside the portal during the zoom.
-    // This is DOM, not a low-resolution screenshot, so it stays sharp.
+    // Live DOM preview keeps the transition crisp at any zoom level.
     if (!portal.querySelector('.portal-site-frame')) {
       const frame = document.createElement('div');
       frame.className = 'portal-site-frame';
@@ -60,11 +58,9 @@
       portal.appendChild(frame);
     }
 
-    let finished = false;
     let tl;
 
     const syncPortal = () => {
-      // This is called at the top of the page before the zoom begins.
       const stageRect = stage.getBoundingClientRect();
       const a = anchor.getBoundingClientRect();
       const c = copy.getBoundingClientRect();
@@ -72,112 +68,98 @@
       const y = a.top + a.height / 2 - stageRect.top;
       const originX = a.left + a.width / 2 - c.left;
       const originY = a.top + a.height / 2 - c.top;
-      gsap.set(portal, { left:x, top:y });
       gsap.set(copy, { transformOrigin:`${originX}px ${originY}px` });
       return { x, y };
     };
 
-    const finishIntro = () => {
-      if (finished) return;
-      finished = true;
+    const getIntroDistance = () => Math.max(window.innerHeight * 3.1, 2100);
 
-      // Keep the portal visible until the exact moment we switch to the real LP.
-      gsap.set(portal, { autoAlpha:1 });
-
-      requestAnimationFrame(() => {
-        const st = tl?.scrollTrigger;
-        if (st) st.kill(true);
-        if (tl) tl.kill();
-
-        // Remove the whole intro and its pin-spacing, then start the actual LP at TOP.
-        intro.style.display = 'none';
-        portal.style.display = 'none';
-        stage.style.display = 'none';
-        document.documentElement.classList.add('intro-complete');
-
-        // Stop touch/mouse momentum from skipping past the LP top during the handoff.
-        const oldOverflow = document.body.style.overflow;
-        const oldBehavior = document.documentElement.style.scrollBehavior;
-        document.documentElement.style.scrollBehavior = 'auto';
-        document.body.style.overflow = 'hidden';
-        window.scrollTo(0, 0);
-
-        requestAnimationFrame(() => window.scrollTo(0, 0));
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          document.body.style.overflow = oldOverflow;
-          document.documentElement.style.scrollBehavior = oldBehavior;
-          // Refresh reveal positions after the document height changes.
-          if (window.ScrollTrigger) ScrollTrigger.refresh();
-        }, 120);
-      });
+    const sizeIntro = () => {
+      // The intro itself provides the scroll distance. pinSpacing is disabled,
+      // so when the pin ends the real LP starts exactly at the top of viewport.
+      intro.style.height = `${getIntroDistance()}px`;
     };
 
-    const mm = gsap.matchMedia();
-    mm.add('(prefers-reduced-motion: no-preference)', () => {
-      const pos = syncPortal();
+    const setStartState = () => {
+      const p = syncPortal();
+      gsap.set(stage, { autoAlpha:1, backgroundColor:'#ffffff' });
+      gsap.set(copy, { scale:1, autoAlpha:1, force3D:true });
       gsap.set(portal, {
         width:12,
         height:34,
-        left:pos.x,
-        top:pos.y,
+        left:p.x,
+        top:p.y,
         borderRadius:6,
         autoAlpha:0,
         force3D:false
       });
-      gsap.set(copy, { scale:1, autoAlpha:1, force3D:true });
-      gsap.set(stage, { backgroundColor:'#ffffff' });
+      gsap.set([scrollHint, sub], { autoAlpha:1, y:0 });
+    };
+
+    const mm = gsap.matchMedia();
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      sizeIntro();
+      setStartState();
 
       tl = gsap.timeline({
         defaults:{ ease:'none' },
         scrollTrigger:{
           trigger:intro,
           start:'top top',
-          end:() => `+=${Math.max(window.innerHeight * 2.1, 1350)}`,
+          end:() => `+=${getIntroDistance()}`,
           pin:stage,
+          pinSpacing:false,
           scrub:1,
           anticipatePin:1,
           invalidateOnRefresh:true,
-          onLeave:finishIntro
+          onEnterBack:() => {
+            // Re-enter the intro when the user scrolls back up from the LP.
+            gsap.set(stage, { autoAlpha:1 });
+            gsap.set(portal, { autoAlpha:1 });
+          },
+          onLeave:() => {
+            // At this exact point the real LP is aligned at viewport top.
+            // Hide the pinned preview and hand control to the actual page.
+            gsap.set(stage, { autoAlpha:0 });
+          },
+          onLeaveBack:() => {
+            // Fully restore the first screen when returning to page top.
+            setStartState();
+          }
         }
       });
 
-      tl.to([scrollHint, sub], { autoAlpha:0, y:-10, duration:.10 }, 0)
-        // The number "1" is the entrance point.
-        .to(portal, { autoAlpha:1, duration:.07 }, .07)
-        .to(copy, { scale:16, duration:.58 }, .10)
-        // Grow the live LP preview from the "1" until it fills the viewport.
+      tl.to([scrollHint, sub], { autoAlpha:0, y:-10, duration:.08 }, 0)
+        // The digit "1" is the entrance point.
+        .to(portal, { autoAlpha:1, duration:.06 }, .06)
+        .to(copy, { scale:16, duration:.50 }, .10)
+        // Expand the live LP preview from the "1" to fill the viewport.
         .to(portal, {
           left:() => window.innerWidth / 2,
           top:() => window.innerHeight / 2,
           width:() => window.innerWidth,
           height:() => window.innerHeight,
           borderRadius:0,
-          duration:.56
+          duration:.50
         }, .18)
-        .to(copy, { autoAlpha:0, duration:.14 }, .58)
-        // Hold the finished LP preview on screen until pinning ends.
-        .to(portal, { autoAlpha:1, duration:.24 }, .76);
+        .to(copy, { autoAlpha:0, duration:.12 }, .55)
+        // Keep the completed LP preview pinned until the real LP reaches top.
+        .to(portal, { autoAlpha:1, duration:.33 }, .67);
 
-      const refreshAtTop = () => {
-        if (finished) return;
-        if (window.scrollY < 5) {
-          gsap.set(copy, { scale:1, autoAlpha:1 });
-          const p = syncPortal();
-          gsap.set(portal, { left:p.x, top:p.y, width:12, height:34, borderRadius:6, autoAlpha:0 });
-        }
+      const refresh = () => {
+        sizeIntro();
+        if (window.scrollY < 5) setStartState();
         ScrollTrigger.refresh();
       };
 
-      window.addEventListener('load', refreshAtTop, { once:true });
-      window.addEventListener('resize', refreshAtTop);
+      window.addEventListener('load', refresh, { once:true });
+      window.addEventListener('resize', refresh);
 
       return () => {
-        window.removeEventListener('resize', refreshAtTop);
-        if (!finished) {
-          tl?.scrollTrigger?.kill(true);
-          tl?.kill();
-        }
+        window.removeEventListener('resize', refresh);
+        tl?.scrollTrigger?.kill(true);
+        tl?.kill();
       };
     });
 
