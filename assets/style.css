@@ -298,3 +298,84 @@ border:4px solid #cf160b;border-radius:14px;box-shadow:0 7px 0 rgba(144,17,0,.16
   .hero-balanced .hero-features b{font-size:6.5px}
   .hero-balanced .hero-features span{font-size:5.2px}
 }
+
+/* =========================================================
+   Scroll-linked vertical flyer intro
+   Fixed 720x1040 design canvas so PC/mobile keep the same composition.
+   GSAP animates only .zoom-flyer; .zoom-stage is the pinned element.
+========================================================= */
+.zoom-intro{position:relative;width:100%;background:#0e0e0e;z-index:2}
+.zoom-stage{position:relative;width:100%;height:100svh;min-height:620px;overflow:hidden;display:grid;place-items:center;isolation:isolate;background:#0f0f0f}
+.zoom-backdrop{position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(circle at 50% 45%,rgba(255,218,57,.22),transparent 28%),
+  radial-gradient(circle at 50% 50%,#242424 0%,#111 54%,#080808 100%)}
+.zoom-flyer{position:relative;width:720px;height:1040px;flex:none;overflow:hidden;background:#fff;border:1px solid rgba(255,255,255,.72);box-shadow:0 32px 90px rgba(0,0,0,.48);transform-origin:center center;will-change:transform,opacity,border-radius,box-shadow;backface-visibility:hidden;border-radius:8px;color:#141414;opacity:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}
+.flyer-topbar{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;background:linear-gradient(180deg,#d80b0b 0%,#bd0000 100%);color:#fff;border-bottom:5px solid #9f0000}
+.flyer-brand{font-size:34px;font-weight:900;letter-spacing:-.055em;white-space:nowrap}
+.flyer-brand b{color:#ffe338}
+.flyer-count{min-width:190px;padding:7px 13px;border-radius:9px;background:linear-gradient(180deg,#ffec54,#ffd313);color:#111;text-align:center;font-size:14px;line-height:1.15;font-weight:900;box-shadow:inset 0 -2px 0 rgba(184,129,0,.2),0 3px 0 rgba(91,0,0,.18)}
+.flyer-count strong{display:block;font-size:19px;margin-top:2px}
+
+.flyer-hero{position:relative;height:420px;display:grid;grid-template-columns:58% 42%;overflow:hidden;background:
+  radial-gradient(circle at 16% 18%,rgba(255,255,255,.98),rgba(255,255,255,.72) 26%,transparent 54%),
+  repeating-conic-gradient(from 178deg at 30% 44%,rgba(255,213,31,.12) 0deg 7deg,transparent 7deg 17deg),
+  linear-gradient(180deg,#faf6e9,#f3ecd9)}
+.flyer-copy{position:relative;z-index:3;padding:26px 4px 18px 26px}
+.flyer-eyebrow{display:inline-block;margin:0 0 5px;padding:3px 8px;background:#fff;border-left:6px solid #111;font-size:22px;line-height:1.2;font-weight:900;transform:rotate(-1deg)}
+.flyer-redline{margin:2px 0 0;color:#d80000;font-size:53px;line-height:.98;font-weight:900;letter-spacing:-.055em;text-shadow:0 3px 0 rgba(255,255,255,.88);transform:rotate(-2deg);transform-origin:left center}
+.flyer-copy h1{position:relative;margin:4px 0 0;font-size:92px;line-height:.92;font-weight:900;letter-spacing:-.085em;color:#111;-webkit-text-stroke:2px #fff;text-shadow:3px 3px 0 rgba(0,0,0,.1);white-space:nowrap}
+.flyer-copy h1:after{content:"";position:absolute;left:4px;right:28px;bottom:-2px;height:12px;background:#ffe500;transform:skew(-18deg);z-index:-1}
+.flyer-intro{margin:2px 12px 16px 0;text-align:right;font-size:43px;line-height:1;font-weight:900;letter-spacing:-.055em;transform:rotate(-1deg)}
+.flyer-tags{display:flex;flex-wrap:wrap;gap:7px;padding-top:4px}
+.flyer-tags span{display:inline-block;padding:8px 10px;border-radius:5px;background:#111;color:#ffe743;font-size:15px;line-height:1.1;font-weight:900;box-shadow:0 3px 0 rgba(0,0,0,.18);white-space:nowrap}
+.flyer-person-wrap{position:relative;z-index:2;overflow:visible}
+.flyer-person-wrap:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#f3ecd9 0%,rgba(243,236,217,.4) 15%,transparent 38%);z-index:2;pointer-events:none}
+.flyer-person{position:absolute;z-index:1;right:-8px;bottom:-24px;width:330px;height:440px;object-fit:cover;object-position:56% center;filter:drop-shadow(0 13px 22px rgba(0,0,0,.14));-webkit-mask-image:linear-gradient(to left,#000 0%,#000 76%,rgba(0,0,0,.82) 88%,transparent 100%);mask-image:linear-gradient(to left,#000 0%,#000 76%,rgba(0,0,0,.82) 88%,transparent 100%)}
+.flyer-medal{position:absolute;z-index:4;right:14px;top:90px;width:132px;height:132px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 42%,#fff 0%,#fff8d9 60%,#efc444 100%);border:5px solid #d6a321;box-shadow:0 8px 15px rgba(0,0,0,.13);font-size:14px;line-height:1.25;font-weight:900}
+.flyer-medal:before{content:"";position:absolute;inset:7px;border:1px solid rgba(190,130,0,.65);border-radius:50%}
+.flyer-medal b{display:block;color:#d40000;font-size:24px;line-height:1;margin:2px 0}
+
+.flyer-support{position:relative;height:280px;margin:0 16px;padding:18px 18px 10px;overflow:hidden;border:5px solid #d5190d;border-radius:15px;background:
+  radial-gradient(circle at 52% 46%,rgba(255,255,210,.99) 0%,rgba(255,231,77,.98) 29%,rgba(255,181,0,.97) 57%,rgba(255,86,0,.96) 78%,rgba(238,45,38,.97) 100%);box-shadow:inset 0 0 0 2px rgba(255,255,255,.7),0 5px 0 rgba(130,20,0,.14)}
+.flyer-support:before{content:"";position:absolute;inset:-20px;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.28) 0deg 5deg,transparent 5deg 14deg);opacity:.7;mix-blend-mode:screen}
+.flyer-support:after{content:"";position:absolute;inset:9px;border:2px solid rgba(255,255,255,.65);border-radius:9px;pointer-events:none}
+.flyer-support>*{position:relative;z-index:1}
+.support-kicker{display:inline-block;padding:5px 10px;background:#fff;color:#111;border-radius:999px;font-size:21px;line-height:1;font-weight:900;box-shadow:0 3px 0 rgba(142,30,0,.18)}
+.support-money{display:flex;align-items:flex-end;justify-content:center;gap:5px;margin-top:0;line-height:.86;white-space:nowrap}
+.support-money span{font-size:52px;font-weight:900;color:#fff;-webkit-text-stroke:2px #cc0800;text-shadow:0 3px 0 rgba(135,0,0,.18)}
+.support-money b{font-size:132px;font-weight:900;color:#df0000;-webkit-text-stroke:5px #fff;text-shadow:0 6px 0 rgba(129,0,0,.2),0 0 16px rgba(255,255,255,.45)}
+.support-money em{font-style:normal;font-size:50px;font-weight:900;color:#df0000;-webkit-text-stroke:2px #fff;margin-bottom:8px}
+.support-present{margin-top:-2px;text-align:center;color:#111;font-size:68px;line-height:.9;font-weight:900;letter-spacing:-.055em;-webkit-text-stroke:2px #fff;text-shadow:0 3px 0 rgba(255,255,255,.22)}
+.flyer-support small{position:absolute;right:18px;bottom:9px;font-size:10px;font-weight:900;color:#111}
+
+.flyer-benefits{height:108px;display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:10px 16px 8px;background:#fff}
+.flyer-benefits>div{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:2px solid #1459af;background:#fff;box-shadow:0 3px 0 rgba(20,89,175,.12)}
+.flyer-benefits b{display:block;color:#1358ad;font-size:16px;line-height:1.15}
+.flyer-benefits span{display:block;margin-top:4px;font-size:10px;line-height:1.25;color:#555}
+
+.flyer-line{position:relative;height:96px;margin:0 16px;display:grid;grid-template-columns:74px 1fr 34px;align-items:center;gap:12px;padding:10px 16px;border:4px solid #fff;border-radius:13px;background:linear-gradient(180deg,#12d86a,#05b94d);color:#fff;box-shadow:0 5px 0 #058c3e,0 0 0 3px #058b3f;overflow:hidden}
+.flyer-line-mark{width:62px;height:62px;border-radius:12px;background:#fff;color:#05b94d;display:grid;place-items:center;font-size:13px;font-weight:900}
+.flyer-line>span:nth-child(2){display:flex;flex-direction:column;text-align:center;line-height:1.15}
+.flyer-line small{font-size:12px;font-weight:900}
+.flyer-line strong{font-size:27px;font-weight:900;letter-spacing:-.03em}
+.flyer-line>b{font-size:40px}
+.flyer-date{height:64px;display:flex;align-items:center;justify-content:center;gap:7px;background:#fff;font-size:17px;font-weight:900;color:#222}
+.flyer-date b{color:#df190f}
+
+.zoom-hint{position:absolute;left:50%;bottom:22px;z-index:5;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none}
+.zoom-hint span{font-size:10px;letter-spacing:.22em;font-weight:900}
+.zoom-hint i{display:block;width:1px;height:34px;margin:6px 0;background:linear-gradient(#fff,rgba(255,255,255,0));animation:zoomScrollLine 1.5s ease-in-out infinite}
+.zoom-hint small{font-size:10px;font-weight:800;opacity:.9}
+@keyframes zoomScrollLine{0%,100%{transform:scaleY(.55);transform-origin:top;opacity:.45}50%{transform:scaleY(1);transform-origin:top;opacity:1}}
+
+@media(max-width:560px){
+  .zoom-stage{min-height:100svh}
+  .zoom-hint{bottom:14px}
+  .zoom-hint small{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  .zoom-hint i,.bonus-pulse,.shine:after{animation:none!important}
+}
+
+body.zooming .mobile-fixed{opacity:0;pointer-events:none;transform:translateY(110%)}
+.mobile-fixed{transition:opacity .25s ease,transform .25s ease}
