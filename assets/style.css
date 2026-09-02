@@ -892,3 +892,22 @@ body{overflow-y:auto!important}
 .page-shell{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
 .reveal,.reveal.is-visible{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
 .portal-intro,.portal-stage,.portal-window,.portal-preview-layer,.portal-copy-wrap,.portal-scroll,.portal-site-frame{display:none!important}
+
+/* ===== 2026-09-02 user-provided TOP main visual ===== */
+.top-image-hero{
+  width:100%;
+  margin:0;
+  padding:0;
+  background:#fff;
+}
+.top-image-hero img{
+  display:block;
+  width:100%;
+  height:auto;
+  margin:0;
+  object-fit:contain;
+}
+@media (max-width:560px){
+  .top-image-hero{margin:0!important;padding:0!important}
+  .top-image-hero img{width:100%!important;height:auto!important}
+}
